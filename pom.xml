@@ -27,7 +27,6 @@
 		<url/>
 	</scm>
 	<properties>
-<<<<<<< HEAD
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
