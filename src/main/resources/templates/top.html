@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>YWM</title>
+<style>
+	body {
+	  background-color: rgb(225, 255, 255);
+	}
+</style>
+</head>
+<body>
+<h1>TOP</h1>
+<p>ようこそ</p>
+<nav>
+  <ul>
+    <li><a th:href="@{/top}">TOP</a></li>
+    <li><a href="#">案件管理</a></li>
+    <li><a th:href="@{/userSearch}">ユーザ管理</a></li>
+	<li><a th:href="@{/userRegister}">ユーザ登録</a></li>
+  </ul>
+</nav>
+<a th:href="@{/logout}">ログアウト</a>
+</body>
+</html>

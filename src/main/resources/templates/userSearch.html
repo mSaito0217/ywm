@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>YWM</title>
+</head>
+<body>
+	<p>ユーザ検索</p>
+	<form th:action="@{/userSearch}" method="get">
+		<input type="hidden" th:name="${hoge}" th:value="moge"/>
+		<label for="userId">ユーザID:</label><br>
+		<input type="text" id="userId" name="userId" ><br>
+	    <label for="name">ユーザ名:</label><br>
+	    <input type="text" id="lastName" name="lastName" placeholder="姓" >
+		<input type="text" id="firstName" name="firstName" placeholder="名" ><br>
+		<label for="nameKana">ユーザ名(カナ):</label><br>
+		<input type="text" id="lastNameKana" name="lastNameKana" placeholder="セイ" >
+		<input type="text" id="firstNameKana" name="firstNameKana" placeholder="メイ" ><br>
+		<label for="email">メールアドレス:</label><br>
+		<input type="email" id="email" name="email" ><br>
+	    <input type="submit" value="検索">
+	</form>
+	
+	<div th:if="${text}"><a text="${text}"></a></div>
+	<a th:href="@{/top}">TOP</a>
+</body>
+</html>

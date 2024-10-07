@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>YWM</title>
+</head>
+<body>
+	<p>ユーザを登録しました。</p>
+	<div>
+	    <label>ユーザID：</label><a th:text="${user.userId}"></a></br>
+		<label>ユーザ名：</label><a th:text="${user.lastName}"></a> <a th:text="${user.firstName}"></a></br>
+		<label>ユーザ名（カナ）：</label><a th:text="${user.lastNameKana}"></a> <a th:text="${user.firstNameKana}"></a></br>
+		<label>メールアドレス：</label><a th:text="${user.email}"></a></br>
+	</div>
+</body>
+</html>

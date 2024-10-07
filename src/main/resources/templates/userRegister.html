@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>YWM</title>
+</head>
+<body>
+    <h2>ユーザ登録</h2>
+    <form th:action="@{/userRegister}" method="post">
+		<label for="userId">ユーザID:</label><br>
+		<input type="text" id="userId" name="userId" required><br>
+        <label for="name">ユーザ名:</label><br>
+        <input type="text" id="lastName" name="lastName" placeholder="姓" required>
+		<input type="text" id="firstName" name="firstName" placeholder="名" required><br>
+		<label for="nameKana">ユーザ名(カナ):</label><br>
+		<input type="text" id="lastNameKana" name="lastNameKana" placeholder="セイ" required>
+		<input type="text" id="firstNameKana" name="firstNameKana" placeholder="メイ" required><br>
+		<label for="email">メールアドレス:</label><br>
+		<input type="email" id="email" name="email" required><br>
+        <label for="password">パスワード:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="登録">
+    </form>
+	<a th:href="@{/top}">TOP</a>
+</body>
+</html>
