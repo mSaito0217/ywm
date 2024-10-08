@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yamamotokogyo.ywm.controller.config.CommonVariable;
 import com.yamamotokogyo.ywm.controller.service.users.UserService;
 import com.yamamotokogyo.ywm.model.users.User;
 import com.yamamotokogyo.ywm.model.users.UserDto;
@@ -46,14 +47,16 @@ public class userController {
         if(existing != null){
             // ユーザーが既に存在する場合の処理
         	mav.setViewName("userRegister");
+        	mav.addObject("msg", CommonVariable.MSG_01);
             return mav; // ユーザーが存在するため、再度登録画面を表示します
         }
         userService.save(userDto); // ユーザーが存在しない場合、新しいユーザーを保存します
         mav.addObject("user", userDto);
+        mav.addObject("msg", CommonVariable.MSG_00);
         mav.setViewName("userRef"); 
         System.out.println("ユーザ参照画面を表示します。"); 
         
-        return mav ; // 登録が成功した場合、参照画面を表示します
+        return mav ;
     }
     
     

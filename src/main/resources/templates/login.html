@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>YWM</title>
+	<title>YWM</title>
 	<style>
-		body {
-		  background-color: rgb(225, 255, 255);
-		  width: 1000px;
-		  padding-top: 15%;
-		  margin: auto;
-		  text-align:center;
+		* {
+			box-sizing: border-box;
 		}
-		#msg{
+
+		body {
+			background-color: rgb(225, 255, 255);
+			width: 1000px;
+			padding-top: 15%;
+			margin: auto;
+			text-align: center;
+		}
+
+		.msg {
 			font-size: 12px;
 			color: red;
 		}
 	</style>
 </head>
+
 <body>
 	<H1>YWM</H1>
 	<div id="main">
-    <form th:action="@{/login}" method="post">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <div>
-			<input type="text" id="userneme" name="username" placeholder="ユーザID" required><br>
-        </div>
-        <div>
-            <input type="password" id="password" name="password" placeholder="パスワード" required/>
-        </div>
-        <button type="submit" value="Submit">Login</button>
-    </form>
-	<div id="msg">
-	<div th:if="${param.error}">
-	    <p>ユーザIDかパスワードが無効です。</p>
-	</div>
-	<div th:if="${param.logout}">
-	    <p>ログアウトされました。</p>
-	</div>
-	</div>
+		<form th:action="@{/login}" method="post">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			<div>
+				<input type="text" id="userneme" name="username" placeholder="ユーザID" required><br>
+			</div>
+			<div>
+				<input type="password" id="password" name="password" placeholder="パスワード" required />
+			</div>
+			<button type="submit" value="Submit">Login</button>
+		</form>
+		<div class="msg">
+			<div th:if="${param.error}">
+				<p>ユーザIDかパスワードが無効です。</p>
+			</div>
+			<div th:if="${param.logout}">
+				<p>ログアウトされました。</p>
+			</div>
+		</div>
 </body>
+
 </html>

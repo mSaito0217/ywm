@@ -1,6 +1,8 @@
 package com.yamamotokogyo.ywm.controller.service.users;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import jakarta.transaction.Transactional;
 
@@ -54,7 +56,9 @@ public User findByUserId(String userId) {
 /**
  * 全件検索
  */
-public void findByAll() {
+public Map<String, User> findByAll() {
+	Map<String, User> users = new HashMap<String, User>(); 
+	return users;
 }
  
  /**

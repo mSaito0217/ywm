@@ -27,6 +27,15 @@ public class UserPrincipal implements UserDetails {
 	        return Collections.singleton(new SimpleGrantedAuthority("USER"));
 	    }
 	    
+	    
+	    /**
+	     * Userオブジェクトを返却
+	     * @return
+	     */
+	    public User getUser() {
+			return user;
+	    }
+	    
 
 	    // Userオブジェクトのパスワードを返します。
 	    @Override

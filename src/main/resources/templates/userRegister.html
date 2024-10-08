@@ -1,25 +1,108 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>YWM</title>
+	<meta charset="UTF-8">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: rgb(225, 255, 255);
+			font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+
+		header {
+			padding: 15px 4% 10px;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			background-color: #fff;
+			display: flex;
+			align-items: center;
+		}
+		h1 {
+		   margin: 0; padding: 0;
+		   font-size: 20px;
+		}
+		a {	
+		   text-decoration: none;
+		   color: #4b4b4b;
+		}
+		ul {
+		   list-style: none;
+		   margin: 0;
+		   display: flex;
+		}
+		li {
+		   margin: 0 0 0 15px;
+		   font-size: 14px;
+		}
+		nav {
+		   margin: 0 0 0 auto;
+		}
+		.login-user{
+			padding-left: 40px;
+		}
+		.logout{
+			margin-bottom: -3px;
+			padding-left: 10px;
+		}
+		.view-title{
+			margin-top: 90px;
+			margin-bottom: -100px;
+			margin-left:50px;
+			font-size: 20px;
+		}
+		.register-form{
+			margin: 100px 50px 50px 50px;
+			background-color: azure;
+			padding : 20px;
+			
+		}
+		.register-form input, label{
+			margin-top: 10px;
+			
+		}
+		.input-label {
+		    display: inline-block;
+		    width: 150px;
+		    vertical-align: top;
+		}
+		</style>
 </head>
 <body>
-    <h2>ユーザ登録</h2>
-    <form th:action="@{/userRegister}" method="post">
-		<label for="userId">ユーザID:</label><br>
+	<header>
+		<h1><a th:href="@{/top}">YWM</a></h1>
+		<nav class="header-nav">
+			<ul>
+				<li><a th:href="@{/userSearch}">案件管理</a></li>
+				<li><a th:href="@{/userSearch}">ユーザ管理</a></li>
+				<li><a th:href="@{/userRegister}">ユーザ登録</a></li>
+			</ul>
+		</nav>
+		<p class="login-user">山田 太郎<a th:text="${name}"></a></p>
+		<a class="logout" th:href="@{/logout}"><img src="https://svgsilh.com/svg/1699614.svg" alt="ログアウト" height="20px"></a>
+	</header>
+	<p class="view-title">ユーザ登録画面</p>
+	<div class="register-form">
+	<form th:action="@{/userRegister}" method="post">
+		<label class="input-label" for="userId">ユーザID</label>
 		<input type="text" id="userId" name="userId" required><br>
-        <label for="name">ユーザ名:</label><br>
+        <label class="input-label" for="name">ユーザ名</label>
         <input type="text" id="lastName" name="lastName" placeholder="姓" required>
 		<input type="text" id="firstName" name="firstName" placeholder="名" required><br>
-		<label for="nameKana">ユーザ名(カナ):</label><br>
+		<label class="input-label" for="nameKana">ユーザ名(カナ)</label>
 		<input type="text" id="lastNameKana" name="lastNameKana" placeholder="セイ" required>
 		<input type="text" id="firstNameKana" name="firstNameKana" placeholder="メイ" required><br>
-		<label for="email">メールアドレス:</label><br>
+		<label class="input-label" for="email">メールアドレス</label>
 		<input type="email" id="email" name="email" required><br>
-        <label for="password">パスワード:</label><br>
+        <label class="input-label" for="password">パスワード</label>
         <input type="password" id="password" name="password" required><br>
         <input type="submit" value="登録">
     </form>
-	<a th:href="@{/top}">TOP</a>
+	</div>
 </body>
 </html>

@@ -4,6 +4,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.yamamotokogyo.ywm.controller.service.users.UserPrincipal;
 
 /**
  * ログインに関する処理を行うコントローラ
@@ -29,9 +32,20 @@ public class LoginController {
  }
  
  @GetMapping("/top")
- public String top() {
+ public ModelAndView top() {
+	 // ログイン情報を取得
 	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	 System.out.println("トップ画面を表示します。");
-     return "top"; 
+	 // 画面に渡す値を設定
+	 ModelAndView mav = new ModelAndView(); 
+	 UserPrincipal userInfo = (UserPrincipal) authentication.getPrincipal();	 
+	 if (userInfo != null ) {
+		 mav.addObject("name", userInfo.getUser().getLastName() +" "+ userInfo.getUser().getFirstName());
+		 mav.setViewName("top");
+		 System.out.println("トップ画面を表示します。");
+	 } else {
+		 mav.setViewName("login");
+		 System.out.println("ユーザ情報の取得に失敗しました。ログイン画面に遷移します。");
+	 } 
+     return mav; 
  }
 }
