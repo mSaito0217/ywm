@@ -1,145 +1,85 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
-	<style>
-		* {
-			box-sizing: border-box;
-		}
-
-		body {
-			margin: 0;
-			padding: 0;
-			background-color: rgb(225, 255, 255);
-			font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
-		}
-
-		header {
-			padding: 15px 4% 10px;
-			position: fixed;
-			top: 0;
-			width: 100%;
-			background-color: #fff;
-			display: flex;
-			align-items: center;
-		}
-		h1 {
-		   margin: 0; padding: 0;
-		   font-size: 20px;
-		}
-		a {	
-		   text-decoration: none;
-		   color: #4b4b4b;
-		}
-		ul {
-		   list-style: none;
-		   margin: 0;
-		   display: flex;
-		}
-		li {
-		   margin: 0 0 0 15px;
-		   font-size: 14px;
-		}
-		nav {
-		   margin: 0 0 0 auto;
-		}
-		.login-user{
-			padding-left: 40px;
-		}
-		.logout{
-			margin-bottom: -3px;
-			padding-left: 10px;
-		}
-		.view-title{
-			margin-top: 90px;
-			margin-bottom: -100px;
-			margin-left:50px;
-			font-size: 20px;
-		}
-		.search-form{
-			margin: 100px 50px 50px 50px;
-			background-color: azure;
-			padding : 20px;
-			
-		}
-		.search-form input, label{
-			margin-top: 10px;
-			
-		}
-		.search-label {
-		    display: inline-block;
-		    width: 150px;
-		    vertical-align: top;
-		}
-		.submit{
-			margin-top: 20px;
-		}
-		table{
-			margin: 10px 50px 50px 50px;
-			background-color: azure;
-			padding : 20px;
-		}
-		table , td, th {
-			border: solid 1px #595959;
-			border-collapse: collapse;
-		}
-		th {
-			background-color: skyblue;
-		}
-		#fix {
-			padding: 3px;
-			width: 190px;
-		}
-		#edit {
-			margin: 5px 5px 0px 5px;
-		}
-	</style>
+	<title>YWM</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<style></style>
 </head>
-<body>
+
+<body class="in-body">
+
+	<!--ヘッダー共通部分 -->
 	<header>
 		<h1><a th:href="@{/top}">YWM</a></h1>
 		<nav class="header-nav">
-			<ul>
-				<li><a th:href="@{/userSearch}">案件管理</a></li>
-				<li><a th:href="@{/userSearch}">ユーザ管理</a></li>
-				<li><a th:href="@{/userRegister}">ユーザ登録</a></li>
+			<ul class="header-nav-ul">
+				<li class="header-nav-li"><a th:href="@{/userSearch}">案件管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/userRegister}">ユーザ登録</a></li>
 			</ul>
 		</nav>
 		<p class="login-user">山田 太郎<a th:text="${name}"></a></p>
-		<a class="logout" th:href="@{/logout}"><img src="https://svgsilh.com/svg/1699614.svg" alt="ログアウト" height="20px"></a>
+		<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト"
+				height="20px"></a>
 	</header>
-	
-	<p class="view-title">ユーザ検索</p>
-	<div class="search-form">
-	<form th:action="@{/userSearch}" method="get">
-		<input type="hidden" th:name="${hoge}" th:value="moge"/>
-		<label class="search-label">ユーザID</label>
-		<input type="text" id="userId" name="userId" ><br>
-	    <label class="search-label">ユーザ名</label>
-	    <input type="text" id="lastName" name="lastName" placeholder="姓" >
-		<input type="text" id="firstName" name="firstName" placeholder="名" ><br>
-		<label class="search-label">ユーザ名(カナ)</label>
-		<input type="text" id="lastNameKana" name="lastNameKana" placeholder="セイ" >
-		<input type="text" id="firstNameKana" name="firstNameKana" placeholder="メイ" ><br>
-		<label for="email" class="search-label">メールアドレス</label>
-		<input type="email" id="email" name="email" ><br>
-		<label class="search-label">権限</label>
-		<input type="checkbox" id="role" name="role" value="0" /><label for="role">管理者</label>
-		<input type="checkbox" id="role" name="role" value="1" /><label for="role">社員</label>
-		<input type="checkbox" id="role" name="role" value="2" /><label for="role">契約社員</label><br>
-		<label class="search-label">有効/無効</label>
-		<input type="checkbox" id="valid" name="valid" value="0" /><label for="valid">無効を含む</label><br>
-	    <input class="submit" type="submit" value="検索">
-		<input class="reset" type="reset" value="リセット">
-	</form>
-	</div>
-	<table>
-	  <tr>
-	    <th id="">ユーザID</th> <th id="fix">名</th> <th id="fix">姓</th> <th id="fix">メールアドレス</th> <th id="fix">権限</th> <th id="fix">有効/無効</th> <th></th>
-	  </tr>
-	  <tr>
-	    <td id="fix">0001</td> <td id="fix">齊藤</td> <td id="fix">夢衣</td> <td id="fix">m.saito@test.jp</td> <td id="fix">管理者</td> <td id="fix">有効</td> <td><img id="edit" src="https://kaikeijin-course.jp/wp/wp-content/uploads/2022/10/%E7%B4%99%E3%81%A8%E3%83%9A%E3%83%B3%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E7%B4%A0%E6%9D%90.png" height="20px"></td>
-	  </tr>
-	</table>
+	<!--ヘッダー共通部分 -->
+
+	<main>
+
+		<p class="view-title">ユーザ検索</p>
+		<div class="search-form">
+			<form th:action="@{/userSearch}" th:object="${userSearchDto}" method="get">
+				<label class="search-label">ユーザID</label>
+				<input type="text" id="userId" name="userId"><br>
+				<label class="search-label">ユーザ名</label>
+				<input type="text" id="lastName" name="lastName" placeholder="姓">
+				<input type="text" id="firstName" name="firstName" placeholder="名"><br>
+				<label class="search-label">ユーザ名(カナ)</label>
+				<input type="text" id="lastNameKana" name="lastNameKana" placeholder="セイ">
+				<input type="text" id="firstNameKana" name="firstNameKana" placeholder="メイ"><br>
+				<label for="email" class="search-label">メールアドレス</label>
+				<input type="email" id="email" name="email"><br>
+				<label class="search-label">権限</label>
+				<input type="checkbox" name="roleAdmin" value="1" /><label>管理者</label>
+				<input type="checkbox" name="roleEmployee" value="1" /><label>社員</label>
+				<input type="checkbox" name="roleContract" value="1" /><label>契約社員</label><br>
+				<label class="search-label">有効/無効</label>
+				<input type="checkbox" id="valid" name="valid" value="1" /><label for="valid">無効を含む</label><br>
+				<input type="hidden" name="viewType" value="search" />
+				<button class="submit" type="submit" value="Submit">検索</button>
+				<button class="reset" type="reset" value="Reset">リセット</button>
+			</form>
+		</div>
+		<table>
+			<tr th:if="${users}">
+				<th>ユーザID</th>
+				<th id="fix">名</th>
+				<th id="fix">姓</th>
+				<th id="fix">メールアドレス</th>
+				<th id="fix">権限</th>
+				<th id="fix">有効/無効</th>
+				<th></th>
+			</tr>
+			<tr class="data-table" th:each="item: ${users}">
+				<td class="fix" th:text=${item.userId}></td>
+				<td class="fix" th:text="${item.lastName}"></td>
+				<td class="fix" th:text="${item.firstName}"></td>
+				<td class="fix" th:text="${item.email}"></td>
+				<td class="fix" th:if="${item.roleCode} eq 0">システム管理者</td>
+				<td class="fix" th:if="${item.roleCode} eq 1">管理者</td>
+				<td class="fix" th:if="${item.roleCode} eq 2">社員</td>
+				<td class="fix" th:if="${item.roleCode} eq 3">契約社員</td>
+				<td class="fix" th:if="${item.validFlag} eq true">有効</td>
+				<td class="fix" th:if="${item.validFlag} eq false">無効</td>
+				<td>
+					<img class="edit" th:src="@{/img/edit.png}" height="20px">
+				</td>
+			</tr>
+		</table>
+	</main>
+	<footer></footer>
 </body>
+
 </html>

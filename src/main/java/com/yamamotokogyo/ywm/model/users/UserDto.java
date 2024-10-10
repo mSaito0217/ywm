@@ -15,7 +15,7 @@ public class UserDto {
     
     // 権限コード
     @NotEmpty
-    private String roleCode; 
+    private int roleCode; 
    
     // 姓
     @NotEmpty
@@ -66,7 +66,7 @@ public class UserDto {
 		return userId;
 	}
 
-	public String getRoleCode() {
+	public int getRoleCode() {
 		return roleCode;
 	}
 
@@ -122,7 +122,7 @@ public class UserDto {
 		this.userId = userId;
 	}
 
-	public void setRoleCode(String roleCode) {
+	public void setRoleCode(int roleCode) {
 		this.roleCode = roleCode;
 	}
 

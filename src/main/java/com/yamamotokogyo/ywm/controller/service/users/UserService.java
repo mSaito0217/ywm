@@ -1,18 +1,20 @@
 package com.yamamotokogyo.ywm.controller.service.users;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.yamamotokogyo.ywm.controller.config.CommonVariable;
+import com.yamamotokogyo.ywm.controller.repository.users.UserDaoImpl;
 import com.yamamotokogyo.ywm.controller.repository.users.UserRepository;
 import com.yamamotokogyo.ywm.model.users.User;
 import com.yamamotokogyo.ywm.model.users.UserDto;
@@ -28,6 +30,12 @@ public class UserService implements UserDetailsService {
 
  @Autowired // Springが自動的にPasswordEncoderの実装を注入します
  private PasswordEncoder passwordEncoder;
+
+ @Autowired
+ private UserDaoImpl userDaoImpl;
+ 
+ public String mUserId = "ユーザID";
+ public String mLastName = "ユーザ名（姓）";
  
  
  /**
@@ -42,7 +50,7 @@ public class UserService implements UserDetailsService {
      return new UserPrincipal(user); // ユーザーが見つかった場合
  }
 
- 
+
  /**
  * ユーザIDでユーザ情報を検索するサービス
  * @param userId
@@ -52,23 +60,20 @@ public User findByUserId(String userId) {
      return userRepository.findByUserId(userId); 
  }
 
-
-/**
- * 全件検索
- */
-public Map<String, User> findByAll() {
-	Map<String, User> users = new HashMap<String, User>(); 
-	return users;
-}
- 
- /**
+  /**
  *ユーザ情報を登録するサービス 
  * @param userDto
  */
 @Transactional // トランザクション開始
- public void save(UserDto userDto) {
+ public String save(UserDto userDto, Authentication authentication) {
      // UserDtoからUserへの変換
      User user = new User();
+     
+     // 登録前のバリデーションチェック
+     if (checkValidation(userDto) != null) {
+    	 // エラーメッセージが返却された場合は登録エラーとする
+    	 return checkValidation(userDto);
+     }
      
      // ユーザID
      user.setUserId(userDto.getUserId());
@@ -92,7 +97,7 @@ public Map<String, User> findByAll() {
      user.setEmail(userDto.getEmail());
      
      // 権限コード
-     user.setRoleCode("1");
+     user.setRoleCode(1);
      
      // 有効フラグ
      user.setValidFlag(true);
@@ -105,15 +110,55 @@ public Map<String, User> findByAll() {
      user.setCreatedAt(date);
      user.setUpdateAt(date);
      
-     user.setCreatedUser("test");
-     user.setUpdateUser("test");
+     // ログインユーザを取得
+     UserPrincipal userInfo = (UserPrincipal) authentication.getPrincipal();
+     // 登録日と更新日にユーザIDを設定
+     user.setCreatedUser(userInfo.getUserID());
+     user.setUpdateUser(userInfo.getUserID());
      
+     // 新規登録なのでバージョンは0固定
      user.setVersion(0);
      
      // データベースへの保存
-     userRepository.save(user); // UserRepositoryを使ってユーザーをデータベースに保存します
+     userRepository.save(user); 
      
      System.out.println("ユーザ登録が完了しました。ユーザID：" + userDto.getUserId());
      
+     return CommonVariable.MSG_00;
  }
+
+
+	/**
+	 * ユーザ情報のバリデーションチェック
+	 * @param userDto
+	 */
+	public String checkValidation(UserDto userDto) {
+		
+		// ユーザID
+		if (userDto.getUserId().isBlank()) {
+			// null もしくは 空 もしくは 空文字のみ
+			return CommonVariable.ERROR_MSG_00 + mUserId;
+		} else if (userDto.getUserId().length() > 8) {
+			// 8文字以上の場合
+			return "8"+ CommonVariable.ERROR_MSG_01 + mUserId;
+		}
+		
+		// 姓
+		if (userDto.getLastName().isBlank()) {
+			// null もしくは 空 もしくは 空文字のみ
+			return CommonVariable.ERROR_MSG_00 + mLastName;
+		} else if (userDto.getLastName().length() > 255) {
+			// 255文字以上の場合
+			return "255"+ CommonVariable.ERROR_MSG_01 + mLastName;
+		} 
+		
+		// TODO バリデーションチェックを追加する
+		
+		return null;
+	}
+	
+    //全件検索
+    public List<User> findAll(){
+        return userRepository.findAll();
+    }
 }

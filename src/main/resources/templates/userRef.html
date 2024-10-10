@@ -2,97 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<style>
-		* {
-			box-sizing: border-box;
-		}
-
-		body {
-			margin: 0;
-			padding: 0;
-			background-color: rgb(225, 255, 255);
-			font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
-		}
-
-		header {
-			padding: 15px 4% 10px;
-			position: fixed;
-			top: 0;
-			width: 100%;
-			background-color: #fff;
-			display: flex;
-			align-items: center;
-		}
-		h1 {
-		   margin: 0; padding: 0;
-		   font-size: 20px;
-		}
-		a {	
-		   text-decoration: none;
-		   color: #4b4b4b;
-		}
-		ul {
-		   list-style: none;
-		   margin: 0;
-		   display: flex;
-		}
-		li {
-		   margin: 0 0 0 15px;
-		   font-size: 14px;
-		}
-		nav {
-		   margin: 0 0 0 auto;
-		}
-		.login-user{
-			padding-left: 40px;
-		}
-		.logout{
-			margin-bottom: -3px;
-			padding-left: 10px;
-		}
-		.view-title{
-			margin-top: 90px;
-			margin-bottom: -100px;
-			margin-left:50px;
-			font-size: 20px;
-		}
-		.ref-form{
-			margin: 100px 50px 50px 50px;
-			background-color: azure;
-			padding : 20px;
-			
-		}
-		.ref-form input, a{
-			margin-top: 10px;
-			
-		}
-		.ref-label {
-		    display: inline-block;
-		    width: 150px;
-		    vertical-align: top;
-		}
-		</style>
+	<title>YWM</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<style></style>
 </head>
-<body>
+<body class="in-body">
+	
+	<!--ヘッダー共通部分 -->
 	<header>
 		<h1><a th:href="@{/top}">YWM</a></h1>
 		<nav class="header-nav">
-			<ul>
-				<li><a th:href="@{/userSearch}">案件管理</a></li>
-				<li><a th:href="@{/userSearch}">ユーザ管理</a></li>
-				<li><a th:href="@{/userRegister}">ユーザ登録</a></li>
+			<ul class="header-nav-ul">
+				<li class="header-nav-li"><a th:href="@{/userSearch}">案件管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/userRegister}">ユーザ登録</a></li>
 			</ul>
 		</nav>
 		<p class="login-user">山田 太郎<a th:text="${name}"></a></p>
-		<a class="logout" th:href="@{/logout}"><img src="https://svgsilh.com/svg/1699614.svg" alt="ログアウト" height="20px"></a>
+		<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト" height="20px"></a>
 	</header>
+	<!--ヘッダー共通部分 -->
+	
+	<main>
 	<p class="view-title">ユーザ参照画面</p></br>
 	<div class="ref-form">
 		<a th:text="${msg}"></a></br>
-	    <label class="ref-label">ユーザID</label><a th:text="${user.userId}"></a></br>
-		<label class="ref-label">ユーザ名</label><a th:text="${user.lastName}"></a> <a th:text="${user.firstName}"></a></br>
-		<label class="ref-label">ユーザ名（カナ）</label><a th:text="${user.lastNameKana}"></a> <a th:text="${user.firstNameKana}"></a></br>
-		<label class="ref-label">メールアドレス</label><a th:text="${user.email}"></a></br>
+	    <label class="ref-label">ユーザID</label><a class="ref-val" th:text="${user.userId}"></a></br>
+		<label class="ref-label">ユーザ名</label><a class="ref-val" th:text="${user.lastName}"></a> <a class="ref-val" th:text="${user.firstName}"></a></br>
+		<label class="ref-label">ユーザ名（カナ）</label><a class="ref-val" th:text="${user.lastNameKana}"></a> <a class="ref-val" th:text="${user.firstNameKana}"></a></br>
+		<label class="ref-label">メールアドレス</label><a class="ref-val" th:text="${user.email}"></a></br>
 	</div>
+	</main>
+	
+	<footer></footer>
 </body>
 </html>

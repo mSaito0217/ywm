@@ -33,19 +33,22 @@ public class LoginController {
  
  @GetMapping("/top")
  public ModelAndView top() {
-	 // ログイン情報を取得
-	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	 // 画面に渡す値を設定
 	 ModelAndView mav = new ModelAndView(); 
+	 
+	 // ログイン情報を取得
+	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	 UserPrincipal userInfo = (UserPrincipal) authentication.getPrincipal();	 
+	 
 	 if (userInfo != null ) {
+		 // ユーザ情報が取得できた場合はトップ画面に遷移
 		 mav.addObject("name", userInfo.getUser().getLastName() +" "+ userInfo.getUser().getFirstName());
 		 mav.setViewName("top");
-		 System.out.println("トップ画面を表示します。");
-	 } else {
-		 mav.setViewName("login");
-		 System.out.println("ユーザ情報の取得に失敗しました。ログイン画面に遷移します。");
-	 } 
+		 return mav; 
+	 }
+	 // ユーザ情報が取得できなかった場合はログイン画面に遷移
+	 mav.setViewName("error");
+	 System.err.println("ユーザ情報の取得に失敗しました。");
      return mav; 
  }
 }

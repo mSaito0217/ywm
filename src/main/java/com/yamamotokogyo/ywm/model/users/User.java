@@ -10,8 +10,8 @@ import jakarta.persistence.Table;
 /**
  * Usersエンティティのモデルクラス
  */
-@Entity  // DBテーブル
-@Table(name = "Users")  // テーブル名
+@Entity
+@Table(name = "Users") 
 public class User {
 	// ユーザID
 	@Id
@@ -20,7 +20,7 @@ public class User {
     
     //権限コード
     @Column(name = "role_code" , nullable = false)  // データベースに合わせてカラム名を修正
-    private String roleCode; 
+    private int roleCode; 
     
     // 姓
     @Column(name = "last_name", nullable = false) 
@@ -75,7 +75,7 @@ public class User {
 		return userId;
 	}
 
-	public String getRoleCode() {
+	public int getRoleCode() {
 		return roleCode;
 	}
 
@@ -131,7 +131,7 @@ public class User {
 		this.userId = userId;
 	}
 
-	public void setRoleCode(String roleCode) {
+	public void setRoleCode(int roleCode) {
 		this.roleCode = roleCode;
 	}
 

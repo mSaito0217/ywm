@@ -1,0 +1,160 @@
+/* ----- 共通的なデザイン ----- */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgb(225, 255, 255);
+	font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #4b4b4b;
+}
+/* ログイン前の画面 */
+.out-body{
+	text-align: center;
+	padding-top: 15%;
+	margin: auto;
+}
+
+/* ログイン後の画面 */
+.in-body {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	padding: 15px 4% 10px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+}
+h1 {
+   margin: 0; padding: 0;
+   font-size: 20px;
+}
+a {	
+   text-decoration: none;
+   color: #4b4b4b;
+}
+.header-nav-ul {
+   list-style: none;
+   margin: 0;
+   display: flex;
+}
+.header-nav-li {
+   margin: 0 0 0 15px;
+   font-size: 14px;
+}
+.header-nav {
+   margin: 0 0 0 auto;
+}
+.login-user{
+	padding-left: 40px;
+}
+.logout{
+	margin-bottom: -3px;
+	padding-left: 10px;
+}
+.view-title{
+	margin-top: 90px;
+	margin-bottom: -100px;
+	margin-left:50px;
+	font-size: 20px;
+}
+.msg {
+	font-size: 12px;
+	margin-left: 50px;
+}
+#error-msg {
+	color: red;
+}
+
+/* ----- ログイン画面 ----- */
+.login-msg {
+	font-size: 12px;
+	color: red;
+}
+
+/* ----- トップ画面 ----- */
+
+/* ----- ユーザ登録画面 ----- */
+.register-form{
+	margin: 100px 50px 50px 50px;
+	background-color: azure;
+	padding : 20px;
+	
+}
+.register-form input, label{
+	margin-top: 10px;
+	
+}
+.input-label {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+}
+
+/* ----- ユーザ参照画面 ----- */
+.ref-form{
+	margin: 100px 50px 50px 50px;
+	background-color: azure;
+	padding : 20px;
+	
+}
+.ref-form input{
+	margin-top: 10px;
+}
+.ref-label {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+}
+
+.ref-val{
+	margin-top: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* ---- ユーザ検索画面 ----- */
+/* 検索系機能共通デザイン */
+.search-form{
+	margin: 100px 50px 50px 50px;
+	background-color: azure;
+	padding : 20px;
+	
+}
+.search-form input, label{
+	margin-top: 10px;
+	
+}
+.search-label {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+}
+.submit{
+	margin-top: 20px;
+}
+table{
+	margin: 10px 50px 50px 50px;
+	background-color: azure;
+	padding : 20px;
+}
+table , td, th {
+	border: solid 1px #595959;
+	border-collapse: collapse;
+}
+th {
+	background-color: skyblue;
+}
+.fix {
+	padding: 3px;
+	width: 190px;
+}
+.edit {
+	margin: 5px 5px 0px 5px;
+}

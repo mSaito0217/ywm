@@ -1,30 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
+	<meta charset="UTF-8">
 	<title>YWM</title>
-	<style>
-		* {
-			box-sizing: border-box;
-		}
-
-		body {
-			background-color: rgb(225, 255, 255);
-			width: 1000px;
-			padding-top: 15%;
-			margin: auto;
-			text-align: center;
-		}
-
-		.msg {
-			font-size: 12px;
-			color: red;
-		}
-	</style>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<style></style>
 </head>
 
-<body>
-	<H1>YWM</H1>
+<body class="out-body">
+	<h1 class="title">YWM</h1>
 	<div id="main">
 		<form th:action="@{/login}" method="post">
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -36,7 +20,7 @@
 			</div>
 			<button type="submit" value="Submit">Login</button>
 		</form>
-		<div class="msg">
+		<div class="login-msg">
 			<div th:if="${param.error}">
 				<p>ユーザIDかパスワードが無効です。</p>
 			</div>
@@ -45,5 +29,4 @@
 			</div>
 		</div>
 </body>
-
 </html>

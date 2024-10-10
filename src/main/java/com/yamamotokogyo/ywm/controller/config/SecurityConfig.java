@@ -27,7 +27,7 @@ public class SecurityConfig { // セキュリティ設定のクラス
             .authorizeRequests(authorizeRequests ->  // 認証リクエストを設定します
                 authorizeRequests
              // 以下へのリクエストは認証なしで許可します
-                    .requestMatchers("/login", "/userRegister","/css/**", "/images/**").permitAll() 
+                    .requestMatchers("/login", "/userRegister","/css/**", "/images/**","/common/**").permitAll() 
                     .anyRequest().authenticated() // それ以外の全てのリクエストは認証が必要です
             )
             .formLogin(formLogin ->  // フォームベースのログインを設定します

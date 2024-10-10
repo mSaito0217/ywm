@@ -1,0 +1,14 @@
+<header>
+	<h1><a th:href="@{/top}">YWM</a></h1>
+	<nav class="header-nav">
+		<ul class="header-nav-ul">
+			<li class="header-nav-li"><a th:href="@{/userSearch}">案件管理</a></li>
+			<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
+			<li class="header-nav-li"><a th:href="@{/userRegister}">ユーザ登録</a></li>
+		</ul>
+	</nav>
+	<p class="login-user"><a th:text="${name}"></a></p>
+	<a class="logout" th:href="@{/logout}"><img src="https://svgsilh.com/svg/1699614.svg" alt="ログアウト" height="20px"></a>
+</header>
+
+<!-- うまく切り出せないので一旦保留 -->
