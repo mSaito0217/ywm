@@ -49,7 +49,6 @@ public class UserDaoImpl implements UserDao {
         sql.append("u.valid_flag ");
         sql.append("FROM ");
         sql.append("users u ");
-        sql.append("WHERE ");
         
         
         List<String> sqlList = new ArrayList<String>();
@@ -98,15 +97,19 @@ public class UserDaoImpl implements UserDao {
         if (!userSearchDto.getEmail().isBlank()) {
         	sqlList.add("u.email like '%" + userSearchDto.getEmail() + "%'");
         }
+        
         // 無効を含まない
-        if (userSearchDto.getValid() == 0) {
+        if (userSearchDto.getValid() == 1) {
         	sqlList.add("u.valid_flag = true");
         }
         
-        sql.append(String.join(" and ", sqlList));
+        if (sqlList.size() != 0) {
+        	sql.append("WHERE ");
+        	sql.append(String.join(" and ", sqlList));
+        }
         
-        // 実行するSQL
-        System.out.println(sql);
+        //SQLの出力
+        System.out.println(sql.toString());
         
         // SQLの実行
         List<Map<String, Object>> result = jdbcTemplate.queryForList(sql.toString());

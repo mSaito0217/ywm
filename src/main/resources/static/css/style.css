@@ -59,8 +59,7 @@ a {
 	padding-left: 10px;
 }
 .view-title{
-	margin-top: 90px;
-	margin-bottom: -100px;
+	margin-top: -10px;
 	margin-left:50px;
 	font-size: 20px;
 }
@@ -72,6 +71,10 @@ a {
 	color: red;
 }
 
+main {
+	margin-top: 110px;
+}
+
 /* ----- ログイン画面 ----- */
 .login-msg {
 	font-size: 12px;
@@ -79,15 +82,70 @@ a {
 }
 
 /* ----- トップ画面 ----- */
+.container{
+	margin-left: 50px;
+}
+#calendar{
+	margin-left: -50px;
+}
+.calendar-table {
+	width: 100px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
 
-/* ----- ユーザ登録画面 ----- */
-.register-form{
-	margin: 100px 50px 50px 50px;
+.calender-td {
+    padding: 5px;
+    text-align: center;
+}
+
+.calender-td:first-child {
+    color: red;
+}
+
+.calender-td:last-child {
+    color: royalblue;
+}
+
+#is-disabled {
+    color: #ccc;
+}
+
+#btn_next {
+	margin-left: 185px;
+	margin-top: -26px;
+}
+
+.calendar-btn{
+	display: flex;
+	margin-top: -40px;
+	border: solid 0px;
+	background-color: rgb(225, 255, 255);
+	border-radius: 50%;
+}
+.calendar-btn:hover {
+  color:rgb(255, 0, 128);
+  background-color: #b0e0e6;
+}
+
+/* ----- ユーザ登録・更新画面 ----- */
+.register-form {
+	margin: 0px 50px 50px 50px;
+	background-color: azure;
+	padding : 20px;
+	
+}
+.update-form {
+	margin: 0px 50px 50px 50px;
 	background-color: azure;
 	padding : 20px;
 	
 }
 .register-form input, label{
+	margin-top: 10px;
+	
+}
+.update-form input, label{
 	margin-top: 10px;
 	
 }
@@ -99,7 +157,7 @@ a {
 
 /* ----- ユーザ参照画面 ----- */
 .ref-form{
-	margin: 100px 50px 50px 50px;
+	margin: 0px 50px 50px 50px;
 	background-color: azure;
 	padding : 20px;
 	
@@ -112,17 +170,19 @@ a {
     width: 150px;
     vertical-align: top;
 }
-
 .ref-val{
 	margin-top: 10px;
 	display: inline-block;
 	vertical-align: top;
 }
+.ref-edit {
+	margin-left: 50px;
+}
 
 /* ---- ユーザ検索画面 ----- */
 /* 検索系機能共通デザイン */
 .search-form{
-	margin: 100px 50px 50px 50px;
+	margin: 0px 50px 50px 50px;
 	background-color: azure;
 	padding : 20px;
 	
@@ -138,6 +198,10 @@ a {
 }
 .submit{
 	margin-top: 20px;
+}
+.search-msg{
+	font-size: 12px;
+	margin-left: 50px;
 }
 table{
 	margin: 10px 50px 50px 50px;
@@ -157,4 +221,7 @@ th {
 }
 .edit {
 	margin: 5px 5px 0px 5px;
+}
+.register{
+	margin-left: 900px;
 }

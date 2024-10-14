@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>YWM</title>
 	<link th:href="@{/css/style.css}" rel="stylesheet">
-	<style></style>
+	<script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
 </head>
 <body class="in-body">
 	
@@ -13,12 +13,12 @@
 		<h1><a th:href="@{/top}">YWM</a></h1>
 		<nav class="header-nav">
 			<ul class="header-nav-ul">
-				<li class="header-nav-li"><a th:href="@{/userSearch}">案件管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/top}">案件管理</a></li>
 				<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
-				<li class="header-nav-li"><a th:href="@{/userRegister}">ユーザ登録</a></li>
+				<li class="header-nav-li"><a th:href="@{/roleSearch}">権限管理</a></li>
 			</ul>
 		</nav>
-		<p class="login-user">山田 太郎<a th:text="${name}"></a></p>
+		<p class="login-user"><a th:text="${name}"></a></p>
 		<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト" height="20px"></a>
 	</header>
 	<!--ヘッダー共通部分 -->
@@ -26,14 +26,25 @@
 	<main>
 	<p class="view-title">ユーザ参照画面</p></br>
 	<div class="ref-form">
-		<a th:text="${msg}"></a></br>
+		<a th:if="${msg}" th:text="${msg}"></a></br>
 	    <label class="ref-label">ユーザID</label><a class="ref-val" th:text="${user.userId}"></a></br>
 		<label class="ref-label">ユーザ名</label><a class="ref-val" th:text="${user.lastName}"></a> <a class="ref-val" th:text="${user.firstName}"></a></br>
 		<label class="ref-label">ユーザ名（カナ）</label><a class="ref-val" th:text="${user.lastNameKana}"></a> <a class="ref-val" th:text="${user.firstNameKana}"></a></br>
 		<label class="ref-label">メールアドレス</label><a class="ref-val" th:text="${user.email}"></a></br>
+		<label class="ref-label">権限</label>
+			<a class="ref-val" th:if="${user.roleCode} eq 0">システム管理者</a>
+			<a class="ref-val" th:if="${user.roleCode} eq 1">管理者</a>
+			<a class="ref-val" th:if="${user.roleCode} eq 2">社員</a>
+			<a class="ref-val" th:if="${user.roleCode} eq 3">契約社員</a></br>
+		<label class="ref-label">有効/無効</label>
+			<a class="ref-val" th:if="${user.validFlag} eq true">有効</a>
+			<a class="ref-val" th:if="${user.validFlag} eq false">無効</a></br>
 	</div>
+	<button class="ref-edit" type="edit" value="Edit"><a th:href="@{/userEdit(userId=${user.userId})}">編集</a></button>
+	<button class="ref-return" type="return" value="Return"><a th:href="@{/userSearch}">戻る</a></button>
 	</main>
 	
 	<footer></footer>
 </body>
+<script th:src="@{/js/common.js}"></script>
 </html>

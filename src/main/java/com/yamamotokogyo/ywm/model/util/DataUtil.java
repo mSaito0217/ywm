@@ -14,6 +14,11 @@ public class DataUtil {
 	
 	
 	
+	/**
+	 * ユーザ検索の結果を加工する処理
+	 * @param result
+	 * @return List<User>
+	 */
 	public static List<User> resultUserList(List<Map<String, Object>> result) {
 		
 		//返却用のリスト

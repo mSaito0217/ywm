@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>YWM</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
+	<style></style>
+</head>
+
+<body class="in-body">
+
+	<!--ヘッダー共通部分 -->
+	<header>
+		<h1><a th:href="@{/top}">YWM</a></h1>
+		<nav class="header-nav">
+			<ul class="header-nav-ul">
+				<li class="header-nav-li"><a th:href="@{/top}">案件管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/roleSearch}">権限管理</a></li>
+			</ul>
+		</nav>
+		<p class="login-user"><a th:text="${name}"></a></p>
+		<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト" height="20px"></a>
+	</header>
+	<!--ヘッダー共通部分 -->
+
+	<main>
+		<p class="view-title">ユーザ編集画面</p>
+		<div class="update-form">
+		<form th:action="@{/userEdit}" method="post">
+			<label class="input-label" for="userId">ユーザID</label>
+			<input type="text" id="userId" name="userId" th:value="${user.userId}"><br>
+			<div type="hidden" id="old-userid" th:value="${user.userId}"></div>
+		    <label class="input-label">ユーザ名</label>
+		    <input type="text" name="lastName" th:value="${user.lastName}" required>
+			<input type="text" name="firstName" th:value="${user.firstName}" required><br>
+			<label class="input-label">ユーザ名(カナ)</label>
+			<input type="text" name="lastNameKana" th:value="${user.lastNameKana}" placeholder="セイ">
+			<input type="text" name="firstNameKana" th:value="${user.firstNameKana}" placeholder="メイ"><br>
+			<label class="input-label" for="email">メールアドレス</label>
+			<input type="email" id="email" name="email" th:value="${user.email}"><br>
+		    <label class="input-label" for="password">新しいパスワード</label>
+		    <input type="password" id="password" name="password"><br>
+		    <input type="submit"  value="登録">
+			<button class="cancel" type="cancel" value="Cancel"><a th:href="@{/userSearch}">キャンセル</a>
+		</form>
+		</div>
+		<a class="msg" id="error-msg" th:text="${errorMsg}"></a></br>
+		<a class="msg" id="msg" th:text="${msg}"></a></br>
+	</main>
+	<footer></footer>
+</body>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/user.js}"></script>
+</html>

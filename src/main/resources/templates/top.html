@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<title>YWM</title>
-	<link th:href="@{/css/style.css}" rel="stylesheet"> 
+	<link th:href="@{/css/style.css}" rel="stylesheet">
 	<script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js}"></script>
 </head>
+
 <body class="in-body">
-	 <div id="header">
+	<div id="header">
 		<header>
 			<h1><a th:href="@{/top}">YWM</a></h1>
 			<nav class="header-nav">
 				<ul class="header-nav-ul">
-					<li class="header-nav-li"><a th:href="@{/userSearch}">案件管理</a></li>
+					<li class="header-nav-li"><a th:href="@{/top}">案件管理</a></li>
 					<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
-					<li class="header-nav-li"><a th:href="@{/userRegister}">ユーザ登録</a></li>
+					<li class="header-nav-li"><a th:href="@{/roleSearch}">権限管理</a></li>
 				</ul>
 			</nav>
 			<p class="login-user"><a th:text="${name}"></a></p>
 			<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト" height="20px"></a>
 		</header>
-	 </div>
-	</main><div id="calendar"></div></main>
+	</div>
+	<main>
+		<!-- 時計 -->
+		<div class="container">
+			<div class="clock"></div>
+			<!-- カレンダー -->
+			<div class="calendar-widget">
+				<div id="calendar"></div>
+				<button class="calendar-btn" id="btn_prev">＜</button>
+				<button class="calendar-btn" id="btn_next">＞</button>
+
+			</div>
+	</main>
 	<footer></footer>
 </body>
-<script>
-	$(function() {
-		//$('#header').load('/common/header.html');
-		//alert("jQueryが正常に動作しています！");
-	});
-</script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/top.js}"></script>
+
 </html>

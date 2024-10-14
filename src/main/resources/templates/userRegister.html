@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>YWM</title>
 	<link th:href="@{/css/style.css}" rel="stylesheet">
-	<style></style>
+	<script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
 </head>
 <body class="in-body">
 	
@@ -13,12 +13,12 @@
 		<h1><a th:href="@{/top}">YWM</a></h1>
 		<nav class="header-nav">
 			<ul class="header-nav-ul">
-				<li class="header-nav-li"><a th:href="@{/userSearch}">案件管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/top}">案件管理</a></li>
 				<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
-				<li class="header-nav-li"><a th:href="@{/userRegister}">ユーザ登録</a></li>
+				<li class="header-nav-li"><a th:href="@{/roleSearch}">権限管理</a></li>
 			</ul>
 		</nav>
-		<p class="login-user">山田 太郎<a th:text="${name}"></a></p>
+		<p class="login-user"><a th:text="${name}"></a></p>
 		<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト" height="20px"></a>
 	</header>
 	<!--ヘッダー共通部分 -->
@@ -33,13 +33,14 @@
         <input type="text" name="lastName" placeholder="姓" required>
 		<input type="text" name="firstName" placeholder="名" required><br>
 		<label class="input-label">ユーザ名(カナ)</label>
-		<input type="text" name="lastNameKana" placeholder="セイ" required>
-		<input type="text" name="firstNameKana" placeholder="メイ" required><br>
+		<input type="text" name="lastNameKana" placeholder="セイ">
+		<input type="text" name="firstNameKana" placeholder="メイ"><br>
 		<label class="input-label" for="email">メールアドレス</label>
-		<input type="email" id="email" name="email" required><br>
+		<input type="email" id="email" name="email"><br>
         <label class="input-label" for="password">パスワード</label>
         <input type="password" id="password" name="password" required><br>
         <input type="submit" value="登録">
+		<button class="cancel" type="cancel" value="Cancel"><a th:href="@{/userSearch}">キャンセル</a>
     </form>
 	</div>
 	<a class="msg" id="error-msg" th:text="${errorMsg}"></a></br>
@@ -47,4 +48,5 @@
 	</main>
 	<footer></footer>
 </body>
+<script th:src="@{/js/common.js}"></script>
 </html>

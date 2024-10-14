@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>YWM</title>
 	<link th:href="@{/css/style.css}" rel="stylesheet">
-	<style></style>
+	<script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
 </head>
 
 <body class="in-body">
@@ -15,19 +15,18 @@
 		<h1><a th:href="@{/top}">YWM</a></h1>
 		<nav class="header-nav">
 			<ul class="header-nav-ul">
-				<li class="header-nav-li"><a th:href="@{/userSearch}">案件管理</a></li>
+				<li class="header-nav-li"><a th:href="@{/top}">案件管理</a></li>
 				<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
-				<li class="header-nav-li"><a th:href="@{/userRegister}">ユーザ登録</a></li>
+				<li class="header-nav-li"><a th:href="@{/roleSearch}">権限管理</a></li>
 			</ul>
 		</nav>
-		<p class="login-user">山田 太郎<a th:text="${name}"></a></p>
+		<p class="login-user"><a th:text="${name}"></a></p>
 		<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト"
 				height="20px"></a>
 	</header>
 	<!--ヘッダー共通部分 -->
 
 	<main>
-
 		<p class="view-title">ユーザ検索</p>
 		<div class="search-form">
 			<form th:action="@{/userSearch}" th:object="${userSearchDto}" method="get">
@@ -40,18 +39,20 @@
 				<input type="text" id="lastNameKana" name="lastNameKana" placeholder="セイ">
 				<input type="text" id="firstNameKana" name="firstNameKana" placeholder="メイ"><br>
 				<label for="email" class="search-label">メールアドレス</label>
-				<input type="email" id="email" name="email"><br>
+				<input type="text" id="email" name="email"><br>
 				<label class="search-label">権限</label>
 				<input type="checkbox" name="roleAdmin" value="1" /><label>管理者</label>
 				<input type="checkbox" name="roleEmployee" value="1" /><label>社員</label>
 				<input type="checkbox" name="roleContract" value="1" /><label>契約社員</label><br>
 				<label class="search-label">有効/無効</label>
-				<input type="checkbox" id="valid" name="valid" value="1" /><label for="valid">無効を含む</label><br>
+				<input type="checkbox" id="valid" name="valid" value="1" /><label for="valid">有効のみ</label><br>
 				<input type="hidden" name="viewType" value="search" />
 				<button class="submit" type="submit" value="Submit">検索</button>
 				<button class="reset" type="reset" value="Reset">リセット</button>
+				<button class="register" type="register" value="Register"><a th:href="@{/userRegister}">新規登録</a></button>
 			</form>
 		</div>
+		<a class="search-msg" th:if="${msg}" th:text="${msg}"></a>
 		<table>
 			<tr th:if="${users}">
 				<th>ユーザID</th>
@@ -63,7 +64,7 @@
 				<th></th>
 			</tr>
 			<tr class="data-table" th:each="item: ${users}">
-				<td class="fix" th:text=${item.userId}></td>
+				<td class="fix" th:text="${item.userId}"></td>
 				<td class="fix" th:text="${item.lastName}"></td>
 				<td class="fix" th:text="${item.firstName}"></td>
 				<td class="fix" th:text="${item.email}"></td>
@@ -74,12 +75,12 @@
 				<td class="fix" th:if="${item.validFlag} eq true">有効</td>
 				<td class="fix" th:if="${item.validFlag} eq false">無効</td>
 				<td>
-					<img class="edit" th:src="@{/img/edit.png}" height="20px">
+					<a th:href="@{/userRef(userId=${item.userId})}"><img class="edit" th:src="@{/img/edit.png}" height="20px"></a>
 				</td>
 			</tr>
 		</table>
 	</main>
 	<footer></footer>
 </body>
-
+<script th:src="@{/js/common.js}"></script>
 </html>
