@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yamamotokogyo.ywm.config.CommonVariable;
 import com.yamamotokogyo.ywm.controller.repository.users.UserDaoImpl;
+import com.yamamotokogyo.ywm.controller.service.role.RoleService;
 import com.yamamotokogyo.ywm.controller.service.users.UserPrincipal;
 import com.yamamotokogyo.ywm.controller.service.users.UserService;
+import com.yamamotokogyo.ywm.model.role.Role;
 import com.yamamotokogyo.ywm.model.users.User;
 import com.yamamotokogyo.ywm.model.users.UserDto;
 import com.yamamotokogyo.ywm.model.users.UserSearchDto;
@@ -36,6 +40,9 @@ public class UserController {
 	@Autowired
 	private UserDaoImpl userDaoImpl;
 
+	@Autowired
+	private RoleService roleService;
+	
 	/**
 	 * ユーザ登録画面の処理(GET)
 	 * @return
@@ -124,6 +131,18 @@ public class UserController {
 
 		if (userSearchDto.getViewType() == null) {
 			// 初期表示処理
+			// 表示する権限を取得
+			List<Role> role =  roleService.findAll();
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonStr = null;
+	        try {
+	            jsonStr = mapper.writeValueAsString(role);
+	        } catch (JsonProcessingException e) {
+	            throw new RuntimeException(e);
+	        }
+
+			// 検索実行用の箱を渡す
+			mav.addObject("role", jsonStr);
 			mav.addObject("userSearchDto", new UserSearchDto());
 			mav.setViewName("userSearch");
 			return mav;

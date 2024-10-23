@@ -107,13 +107,31 @@ main {
     color: royalblue;
 }
 
-#is-disabled {
+.is-disabled:first-child  {
+	color: rgb(255, 185, 185);
+}
+
+.is-disabled:last-child  {
+	color: rgb(169, 187, 241);
+}
+
+.holiday {
+	color: red;
+}
+
+.is-disabled {
+	padding: 5px;
+	text-align: center;
     color: #ccc;
+}
+
+.dis-holiday {
+	color: rgb(255, 185, 185);
 }
 
 #btn_next {
 	margin-left: 185px;
-	margin-top: -26px;
+	margin-top: -22px;
 }
 
 .calendar-btn{

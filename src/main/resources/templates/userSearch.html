@@ -2,54 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>YWM</title>
-	<link th:href="@{/css/style.css}" rel="stylesheet">
-	<script th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
+<meta charset="UTF-8">
+<title>YWM</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<script type="text/javascript" th:inline="javascript"
+	th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:inline="javascript"
+	th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js}"></script>
 </head>
 
 <body class="in-body">
 
 	<!--ヘッダー共通部分 -->
-	<header>
-		<h1><a th:href="@{/top}">YWM</a></h1>
-		<nav class="header-nav">
-			<ul class="header-nav-ul">
-				<li class="header-nav-li"><a th:href="@{/top}">案件管理</a></li>
-				<li class="header-nav-li"><a th:href="@{/userSearch}">ユーザ管理</a></li>
-				<li class="header-nav-li"><a th:href="@{/roleSearch}">権限管理</a></li>
-			</ul>
-		</nav>
-		<p class="login-user"><a th:text="${name}"></a></p>
-		<a class="logout" th:href="@{/logout}"><img th:src="@{/img/logout.svg}" alt="ログアウト"
-				height="20px"></a>
-	</header>
+	<input type="hidden" id="login-user" th:name="${name}"th:value="${name}" />
+	<div id="header"><header></header>
 	<!--ヘッダー共通部分 -->
 
 	<main>
+		<input type="hidden" id="user-view-name" value="search" />
+		<input type="hidden" id="role-list" th:name="${role}"th:value="${role}"  />
 		<p class="view-title">ユーザ検索</p>
 		<div class="search-form">
-			<form th:action="@{/userSearch}" th:object="${userSearchDto}" method="get">
-				<label class="search-label">ユーザID</label>
-				<input type="text" id="userId" name="userId"><br>
-				<label class="search-label">ユーザ名</label>
-				<input type="text" id="lastName" name="lastName" placeholder="姓">
-				<input type="text" id="firstName" name="firstName" placeholder="名"><br>
-				<label class="search-label">ユーザ名(カナ)</label>
-				<input type="text" id="lastNameKana" name="lastNameKana" placeholder="セイ">
-				<input type="text" id="firstNameKana" name="firstNameKana" placeholder="メイ"><br>
-				<label for="email" class="search-label">メールアドレス</label>
-				<input type="text" id="email" name="email"><br>
-				<label class="search-label">権限</label>
+			<form th:action="@{/userSearch}" th:object="${userSearchDto}"
+				method="get">
+				<label class="search-label">ユーザID</label> <input type="text"
+					id="userId" name="userId"><br> <label
+					class="search-label">ユーザ名</label> <input type="text" id="lastName"
+					name="lastName" placeholder="姓"> <input type="text"
+					id="firstName" name="firstName" placeholder="名"><br> <label
+					class="search-label">ユーザ名(カナ)</label> <input type="text"
+					id="lastNameKana" name="lastNameKana" placeholder="セイ"> <input
+					type="text" id="firstNameKana" name="firstNameKana"
+					placeholder="メイ"><br> <label for="email"
+					class="search-label">メールアドレス</label> <input type="text" id="email"
+					name="email"><br> <label class="search-label">権限</label>
 				<input type="checkbox" name="roleAdmin" value="1" /><label>管理者</label>
 				<input type="checkbox" name="roleEmployee" value="1" /><label>社員</label>
 				<input type="checkbox" name="roleContract" value="1" /><label>契約社員</label><br>
-				<label class="search-label">有効/無効</label>
-				<input type="checkbox" id="valid" name="valid" value="1" /><label for="valid">有効のみ</label><br>
+				<label class="search-label">有効/無効</label> <input type="checkbox"
+					id="valid" name="valid" value="1" /><label for="valid">有効のみ</label><br>
 				<input type="hidden" name="viewType" value="search" />
 				<button class="submit" type="submit" value="Submit">検索</button>
 				<button class="reset" type="reset" value="Reset">リセット</button>
-				<button class="register" type="register" value="Register"><a th:href="@{/userRegister}">新規登録</a></button>
+				<button class="register" type="register" value="Register">
+					<a th:href="@{/userRegister}">新規登録</a>
+				</button>
 			</form>
 		</div>
 		<a class="search-msg" th:if="${msg}" th:text="${msg}"></a>
@@ -74,13 +71,13 @@
 				<td class="fix" th:if="${item.roleCode} eq 3">契約社員</td>
 				<td class="fix" th:if="${item.validFlag} eq true">有効</td>
 				<td class="fix" th:if="${item.validFlag} eq false">無効</td>
-				<td>
-					<a th:href="@{/userRef(userId=${item.userId})}"><img class="edit" th:src="@{/img/edit.png}" height="20px"></a>
-				</td>
+				<td><a th:href="@{/userRef(userId=${item.userId})}"><img
+						class="edit" th:src="@{/img/edit.png}" height="20px"></a></td>
 			</tr>
 		</table>
 	</main>
 	<footer></footer>
 </body>
 <script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/user.js}"></script>
 </html>
