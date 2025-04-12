@@ -1,4 +1,4 @@
-package com.yamamotokogyo.ywm.model.orders;
+package com.yamamotokogyo.ywm.model.ordersHistory;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -8,13 +8,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * Ordersエンティティのモデルクラス
+ * OrdersHistoryエンティティのモデルクラス
  */
-@Table(name = "Orders")
-public class Order {
-	//注文ID	
+@Table(name = "orders_history")
+public class OrderHistory {
+	//注文履歴ID	
 	@Id
-	@Column(name = "order_id", nullable = false, unique = true)
+	@Column(name = "order_history_id", nullable = false, unique = true)
+	private String orderHistoryId;
+
+	//注文ID
+	@Column(name = "order_id", nullable = false)
 	private String orderId;
 
 	//作業番号
@@ -148,6 +152,14 @@ public class Order {
 	//バージョン
 	@Column(name = "version", nullable = false)
 	private int version;
+
+	//版管理No
+	@Column(name = "history_version", nullable = false)
+	private int historyVersion;
+
+	public String getOrderHistoryId() {
+		return orderHistoryId;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -285,6 +297,14 @@ public class Order {
 		return version;
 	}
 
+	public int getHistoryVersion() {
+		return historyVersion;
+	}
+
+	public void setOrderHistoryId(String orderHistoryId) {
+		this.orderHistoryId = orderHistoryId;
+	}
+
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
@@ -419,6 +439,10 @@ public class Order {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public void setHistoryVersion(int historyVersion) {
+		this.historyVersion = historyVersion;
 	}
 
 }

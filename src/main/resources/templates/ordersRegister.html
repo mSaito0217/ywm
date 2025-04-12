@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<meta charset="UTF-8">
+	<title>YWM</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<script type="text/javascript" th:inline="javascript" th:src="@{https://code.jquery.com/jquery-3.4.1.min.js}"></script>
+	<script type="text/javascript" th:inline="javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js}"></script>
+	<script type="text/javascript" th:inline="javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
+	<link th:href="@{https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css}" rel="stylesheet" >
+	<style></style>
+</head>
+
+<body class="in-body">
+
+	<!--ヘッダー共通部分 -->
+	<input type="hidden" id="login-user" th:name="${name}" th:value="${name}" />
+	<div id="header">
+		<header></header>
+		<!--ヘッダー共通部分 -->
+
+		<main>
+			<!-- <input type="hidden" id="user-view-name" value="edit" /> -->
+			<p class="view-title">作業進行表登録画面</p>
+			<div class="update-form">
+				<form th:action="@{/orderRegister}" method="post">
+					<label class="input-label" for="orderId">工番</label>
+					<input type="text" id="orderId" name="orderId" th:value="${order.orderId}" disabled><br>
+					<label class="input-label" for="orderId">作業番号</label>
+					<input type="text" id="workNumber" name="workNumber" th:value="${order.workNumber}"><br>
+					<label class="input-label">品番</label>
+					<input type="text" id="productNumber1" name="productNumber1" th:value="${order.productNumber1}" placeholder="品番1">
+					<input type="text" id="productNumber2" name="productNumber2" th:value="${order.productNumber2}" placeholder="品番2">
+					<!-- ダイアログ開始 -->
+					<div id="product-dl" style="display:none;">
+					  <p>ダイアログテスト</p>
+					</div>
+					<!-- ダイアログ終了 -->
+					<input type="button" id="product-btn" value="類似注文検索"><br>
+					<label class="input-label">対象製品名</label>
+					<input type="text" id="productName" name="productName" th:value="${order.productName}"><br>
+					<input type="submit" value="登録">
+					<button class="cancel" type="cancel" value="Cancel">
+						<a th:href="@{/top}">キャンセル</a>
+				</form>
+			</div>
+			<a class="msg" id="error-msg" th:text="${errorMsg}"></a></br>
+			<a class="msg" id="msg" th:text="${msg}"></a></br>
+		</main>
+		<footer></footer>
 </body>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/order.js}"></script>
 </html>

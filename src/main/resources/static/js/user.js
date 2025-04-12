@@ -5,8 +5,6 @@
 jQuery(function($) {
 
 	// -------------- 画面読み込み時に呼び出し -------------- 
-	// ヘッダーの生成
-	headerCreate();
 
 	let viewName = $('#user-view-name').val();
 

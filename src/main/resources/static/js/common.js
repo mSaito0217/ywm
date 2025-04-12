@@ -31,6 +31,12 @@ var menuConf = {
 		name: '権限管理',
 		href: '/roleSearch',
 		role: '',
+	},
+	menu4: {
+		id: 'ordersRegister',
+		name: '注文登録',
+		href: '/ordersRegister',
+		role: '',
 	}
 };
 
@@ -56,9 +62,11 @@ function headerCreate() {
 
 	// ユーザ名の取得
 	let loginUser = window.sessionStorage.getItem('loginUser');
-	if (loginUser == "") {
+	if (loginUser == "" || loginUser == null) {
 		loginUser = $('#login-user').val();
 		window.sessionStorage.setItem('loginUser', loginUser);
+	} else {
+		window.sessionStorage.setItem('loginUser', '');
 	};
 	
 	html = html + '<p class="login-user"><a>' + loginUser + '</a></p>';
@@ -66,6 +74,14 @@ function headerCreate() {
 	// htmlのセット
 	document.querySelector('header').innerHTML = html;
 };
+
+jQuery(function($) {
+	
+	// -------------- 画面読み込み時に呼び出し -------------- 
+	// ヘッダーの生成
+	headerCreate();
+	
+});
 
 // ログアウト時のポップアップアラート
 $('.logout').click(function() {

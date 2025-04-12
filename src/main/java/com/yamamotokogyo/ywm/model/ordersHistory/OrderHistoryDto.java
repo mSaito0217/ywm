@@ -1,153 +1,134 @@
-package com.yamamotokogyo.ywm.model.orders;
+package com.yamamotokogyo.ywm.model.ordersHistory;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 /**
- * Ordersエンティティのモデルクラス
+ * OrdersHistoryエンティティに関するデータ転送オブジェクト (DTO)
  */
-@Table(name = "Orders")
-public class Order {
-	//注文ID	
-	@Id
-	@Column(name = "order_id", nullable = false, unique = true)
+public class OrderHistoryDto {
+	//注文履歴ID
+	@NotEmpty
+	private String orderHistoryId;
+
+	//注文ID
+	@NotEmpty
 	private String orderId;
 
 	//作業番号
-	@Column(name = "work_number")
 	private String workNumber;
 
 	//品番１
-	@Column(name = "product_number_1")
 	private String productNumber1;
 
 	//品番２
-	@Column(name = "product_number_2")
 	private String productNumber2;
 
 	//対象製品名
-	@Column(name = "product_name")
 	private String productName;
 
 	//次数
-	@Column(name = "quantity")
 	private String quantity;
 
 	//品目
-	@Column(name = "Item")
 	private String item;
 
 	//目的
-	@Column(name = "purpose")
 	private String purpose;
 
 	//手配品番
-	@Column(name = "arrangements_product_number")
 	private String arrangementsProductNumber;
 
 	//手配品名
-	@Column(name = "arrangements_product_name")
 	private String arrangementsProductName;
 
 	//材質
-	@Column(name = "material")
 	private String material;
 
 	//寸法
-	@Column(name = "size")
 	private String size;
 
 	//注文数
-	@Column(name = "order_volume")
 	private int orderVolume;
 
 	//単位ID
-	@Column(name = "scale_id")
 	private String scaleId;
 
 	//手配分類
-	@Column(name = "arrangements_type")
 	private String arrangementsType;
 
 	//単価
-	@Column(name = "cost")
 	private int cost;
 
 	//金額
-	@Column(name = "amount")
 	private BigDecimal amount;
 
 	//納品予定日
-	@Column(name = "delivery_schedule_date")
 	private Date deliveryScheduleDate;
 
 	//納入場所
-	@Column(name = "delivery_place")
 	private String deliveryPlace;
 
 	//使用部署ID
-	@Column(name = "use_department_id")
 	private String useDepartmentId;
 
 	//直送直納
-	@Column(name = "direct_delivery")
 	private boolean directDelivery;
 
 	//単価未決定理由
-	@Column(name = "cost_reason_pending")
 	private String costReasonPending;
 
 	//単価決定予定期日
-	@Column(name = "cost_decision_schedule_date")
 	private Date costDecisionScheduleDate;
 
 	//希望納品日
-	@Column(name = "desired_delivery_schedule_date")
 	private Date desiredDeliveryScheduleDate;
 
 	//承認者ID
-	@Column(name = "approver_id")
 	private String approverId;
 
 	//依頼者ID
-	@Column(name = "requester_id")
 	private String requesterId;
 
 	//発行者ID
-	@Column(name = "Issuer_id")
 	private String issuerId;
 
 	//備考
-	@Column(name = "note")
 	private String note;
 
 	//初期登録日時
-	@Column(name = "created_at", nullable = false)
+	@NotEmpty
 	private Date createdAt;
 
 	//初期登録者
-	@Column(name = "created_user", nullable = false)
+	@NotEmpty
 	private String createdUser;
 
 	//最終更新日時
-	@Column(name = "update_at", nullable = false)
+	@NotEmpty
 	private Date updateAt;
 
 	//最終更新者
-	@Column(name = "update_user", nullable = false)
+	@NotEmpty
 	private String updateUser;
 
 	//中止フラグ
-	@Column(name = "valid_flag", nullable = false)
+	@NotEmpty
 	private boolean validFlag;
 
 	//バージョン
-	@Column(name = "version", nullable = false)
+	@NotEmpty
 	private int version;
+
+	//版管理No
+	@NotEmpty
+	private int historyVersion;
+
+	public String getOrderHistoryId() {
+		return orderHistoryId;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -285,6 +266,14 @@ public class Order {
 		return version;
 	}
 
+	public int getHistoryVersion() {
+		return historyVersion;
+	}
+
+	public void setOrderHistoryId(String orderHistoryId) {
+		this.orderHistoryId = orderHistoryId;
+	}
+
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
@@ -419,6 +408,10 @@ public class Order {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public void setHistoryVersion(int historyVersion) {
+		this.historyVersion = historyVersion;
 	}
 
 }

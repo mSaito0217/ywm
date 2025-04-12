@@ -8,388 +8,385 @@ import jakarta.validation.constraints.NotEmpty;
 /**
  * Ordersエンティティに関するデータ転送オブジェクト (DTO)
  */
-public class OrderDto {
-	
-	 //注文ID
+public class OrderDto { //注文ID
 	@NotEmpty
-	private String OrderId;
+	private String orderId;
 
-	 //作業番号
+	//作業番号
+	private String workNumber;
+
+	//品番１
+	private String productNumber1;
+
+	//品番２
+	private String productNumber2;
+
+	//対象製品名
+	private String productName;
+
+	//次数
+	private String quantity;
+
+	//品目
+	private String item;
+
+	//目的
+	private String purpose;
+
+	//手配品番
+	private String arrangementsProductNumber;
+
+	//手配品名
+	private String arrangementsProductName;
+
+	//材質
+	private String material;
+
+	//寸法
+	private String size;
+
+	//注文数
+	private int orderVolume;
+
+	//単位ID
+	private String scaleId;
+
+	//手配分類
+	private String arrangementsType;
+
+	//単価
+	private int cost;
+
+	//金額
+	private BigDecimal amount;
+
+	//納品予定日
+	private Date deliveryScheduleDate;
+
+	//納入場所
+	private String deliveryPlace;
+
+	//使用部署ID
+	private String useDepartmentId;
+
+	//直送直納
+	private boolean directDelivery;
+
+	//単価未決定理由
+	private String costReasonPending;
+
+	//単価決定予定期日
+	private Date costDecisionScheduleDate;
+
+	//希望納品日
+	private Date desiredDeliveryScheduleDate;
+
+	//承認者ID
+	private String approverId;
+
+	//依頼者ID
+	private String requesterId;
+
+	//発行者ID
+	private String issuerId;
+
+	//備考
+	private String note;
+
+	//初期登録日時
 	@NotEmpty
-	private String WorkNumber;
+	private Date createdAt;
 
-	 //品番１
-	private String ProductNumber1;
-
-	 //品番２
-	private String ProductNumber2;
-
-	 //対象製品名
-	private String ProductName;
-
-	 //次数
-	private String Quantity;
-
-	 //品目
-	private String Item;
-
-	 //目的
-	private String Purpose;
-
-	 //手配品番
-	private String ArrangementsProductNumber;
-
-	 //手配品名
-	private String ArrangementsProductName;
-
-	 //材質
-	private String Material;
-
-	 //寸法
-	private String Size;
-
-	 //注文数
-	private int OrderVolume;
-
-	 //単位ID
-	private String ScaleId;
-
-	 //手配分類
-	private String ArrangementsType;
-
-	 //単価
-	private int Cost;
-
-	 //金額
-	private BigDecimal Amount;
-
-	 //納品予定日
-	private Date DeliveryScheduleDate;
-
-	 //納入場所
-	private String DeliveryPlace;
-
-	 //使用部署ID
-	private String UseDepartmentId;
-
-	 //直送直納
-	private boolean DirectDelivery;
-
-	 //単価未決定理由
-	private String CostReasonPending;
-
-	 //単価決定予定期日
-	private Date CostDecisionScheduleDate;
-
-	 //希望納品日
-	private Date DesiredDeliveryScheduleDate;
-
-	 //承認者ID
-	private String ApproverId;
-
-	 //依頼者ID
-	private String RequesterId;
-
-	 //発行者ID
-	private String IssuerId;
-
-	 //備考
-	private String Note;
-
-	 //初期登録日時
+	//初期登録者
 	@NotEmpty
-	private Date CreatedAt;
+	private String createdUser;
 
-	 //初期登録者
+	//最終更新日時
 	@NotEmpty
-	private String CreatedUser;
+	private Date updateAt;
 
-	 //最終更新日時
+	//最終更新者
 	@NotEmpty
-	private Date UpdateAt;
+	private String updateUser;
 
-	 //最終更新者
+	//中止フラグ
 	@NotEmpty
-	private String UpdateUser;
+	private boolean validFlag;
 
-	 //中止フラグ
+	//バージョン
 	@NotEmpty
-	private boolean ValidFlag;
-
-	 //バージョン
-	@NotEmpty
-	private int Version;
+	private int version;
 
 	public String getOrderId() {
-		return OrderId;
+		return orderId;
 	}
 
 	public String getWorkNumber() {
-		return WorkNumber;
+		return workNumber;
 	}
 
 	public String getProductNumber1() {
-		return ProductNumber1;
+		return productNumber1;
 	}
 
 	public String getProductNumber2() {
-		return ProductNumber2;
+		return productNumber2;
 	}
 
 	public String getProductName() {
-		return ProductName;
+		return productName;
 	}
 
 	public String getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 
 	public String getItem() {
-		return Item;
+		return item;
 	}
 
 	public String getPurpose() {
-		return Purpose;
+		return purpose;
 	}
 
 	public String getArrangementsProductNumber() {
-		return ArrangementsProductNumber;
+		return arrangementsProductNumber;
 	}
 
 	public String getArrangementsProductName() {
-		return ArrangementsProductName;
+		return arrangementsProductName;
 	}
 
 	public String getMaterial() {
-		return Material;
+		return material;
 	}
 
 	public String getSize() {
-		return Size;
+		return size;
 	}
 
 	public int getOrderVolume() {
-		return OrderVolume;
+		return orderVolume;
 	}
 
 	public String getScaleId() {
-		return ScaleId;
+		return scaleId;
 	}
 
 	public String getArrangementsType() {
-		return ArrangementsType;
+		return arrangementsType;
 	}
 
 	public int getCost() {
-		return Cost;
+		return cost;
 	}
 
 	public BigDecimal getAmount() {
-		return Amount;
+		return amount;
 	}
 
 	public Date getDeliveryScheduleDate() {
-		return DeliveryScheduleDate;
+		return deliveryScheduleDate;
 	}
 
 	public String getDeliveryPlace() {
-		return DeliveryPlace;
+		return deliveryPlace;
 	}
 
 	public String getUseDepartmentId() {
-		return UseDepartmentId;
+		return useDepartmentId;
 	}
 
 	public boolean isDirectDelivery() {
-		return DirectDelivery;
+		return directDelivery;
 	}
 
 	public String getCostReasonPending() {
-		return CostReasonPending;
+		return costReasonPending;
 	}
 
 	public Date getCostDecisionScheduleDate() {
-		return CostDecisionScheduleDate;
+		return costDecisionScheduleDate;
 	}
 
 	public Date getDesiredDeliveryScheduleDate() {
-		return DesiredDeliveryScheduleDate;
+		return desiredDeliveryScheduleDate;
 	}
 
 	public String getApproverId() {
-		return ApproverId;
+		return approverId;
 	}
 
 	public String getRequesterId() {
-		return RequesterId;
+		return requesterId;
 	}
 
 	public String getIssuerId() {
-		return IssuerId;
+		return issuerId;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public Date getCreatedAt() {
-		return CreatedAt;
+		return createdAt;
 	}
 
 	public String getCreatedUser() {
-		return CreatedUser;
+		return createdUser;
 	}
 
 	public Date getUpdateAt() {
-		return UpdateAt;
+		return updateAt;
 	}
 
 	public String getUpdateUser() {
-		return UpdateUser;
+		return updateUser;
 	}
 
 	public boolean isValidFlag() {
-		return ValidFlag;
+		return validFlag;
 	}
 
 	public int getVersion() {
-		return Version;
+		return version;
 	}
 
 	public void setOrderId(String orderId) {
-		OrderId = orderId;
+		this.orderId = orderId;
 	}
 
 	public void setWorkNumber(String workNumber) {
-		WorkNumber = workNumber;
+		this.workNumber = workNumber;
 	}
 
 	public void setProductNumber1(String productNumber1) {
-		ProductNumber1 = productNumber1;
+		this.productNumber1 = productNumber1;
 	}
 
 	public void setProductNumber2(String productNumber2) {
-		ProductNumber2 = productNumber2;
+		this.productNumber2 = productNumber2;
 	}
 
 	public void setProductName(String productName) {
-		ProductName = productName;
+		this.productName = productName;
 	}
 
 	public void setQuantity(String quantity) {
-		Quantity = quantity;
+		this.quantity = quantity;
 	}
 
 	public void setItem(String item) {
-		Item = item;
+		this.item = item;
 	}
 
 	public void setPurpose(String purpose) {
-		Purpose = purpose;
+		this.purpose = purpose;
 	}
 
 	public void setArrangementsProductNumber(String arrangementsProductNumber) {
-		ArrangementsProductNumber = arrangementsProductNumber;
+		this.arrangementsProductNumber = arrangementsProductNumber;
 	}
 
 	public void setArrangementsProductName(String arrangementsProductName) {
-		ArrangementsProductName = arrangementsProductName;
+		this.arrangementsProductName = arrangementsProductName;
 	}
 
 	public void setMaterial(String material) {
-		Material = material;
+		this.material = material;
 	}
 
 	public void setSize(String size) {
-		Size = size;
+		this.size = size;
 	}
 
 	public void setOrderVolume(int orderVolume) {
-		OrderVolume = orderVolume;
+		this.orderVolume = orderVolume;
 	}
 
 	public void setScaleId(String scaleId) {
-		ScaleId = scaleId;
+		this.scaleId = scaleId;
 	}
 
 	public void setArrangementsType(String arrangementsType) {
-		ArrangementsType = arrangementsType;
+		this.arrangementsType = arrangementsType;
 	}
 
 	public void setCost(int cost) {
-		Cost = cost;
+		this.cost = cost;
 	}
 
 	public void setAmount(BigDecimal amount) {
-		Amount = amount;
+		this.amount = amount;
 	}
 
 	public void setDeliveryScheduleDate(Date deliveryScheduleDate) {
-		DeliveryScheduleDate = deliveryScheduleDate;
+		this.deliveryScheduleDate = deliveryScheduleDate;
 	}
 
 	public void setDeliveryPlace(String deliveryPlace) {
-		DeliveryPlace = deliveryPlace;
+		this.deliveryPlace = deliveryPlace;
 	}
 
 	public void setUseDepartmentId(String useDepartmentId) {
-		UseDepartmentId = useDepartmentId;
+		this.useDepartmentId = useDepartmentId;
 	}
 
 	public void setDirectDelivery(boolean directDelivery) {
-		DirectDelivery = directDelivery;
+		this.directDelivery = directDelivery;
 	}
 
 	public void setCostReasonPending(String costReasonPending) {
-		CostReasonPending = costReasonPending;
+		this.costReasonPending = costReasonPending;
 	}
 
 	public void setCostDecisionScheduleDate(Date costDecisionScheduleDate) {
-		CostDecisionScheduleDate = costDecisionScheduleDate;
+		this.costDecisionScheduleDate = costDecisionScheduleDate;
 	}
 
 	public void setDesiredDeliveryScheduleDate(Date desiredDeliveryScheduleDate) {
-		DesiredDeliveryScheduleDate = desiredDeliveryScheduleDate;
+		this.desiredDeliveryScheduleDate = desiredDeliveryScheduleDate;
 	}
 
 	public void setApproverId(String approverId) {
-		ApproverId = approverId;
+		this.approverId = approverId;
 	}
 
 	public void setRequesterId(String requesterId) {
-		RequesterId = requesterId;
+		this.requesterId = requesterId;
 	}
 
 	public void setIssuerId(String issuerId) {
-		IssuerId = issuerId;
+		this.issuerId = issuerId;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
 	public void setCreatedAt(Date createdAt) {
-		CreatedAt = createdAt;
+		this.createdAt = createdAt;
 	}
 
 	public void setCreatedUser(String createdUser) {
-		CreatedUser = createdUser;
+		this.createdUser = createdUser;
 	}
 
 	public void setUpdateAt(Date updateAt) {
-		UpdateAt = updateAt;
+		this.updateAt = updateAt;
 	}
 
 	public void setUpdateUser(String updateUser) {
-		UpdateUser = updateUser;
+		this.updateUser = updateUser;
 	}
 
 	public void setValidFlag(boolean validFlag) {
-		ValidFlag = validFlag;
+		this.validFlag = validFlag;
 	}
 
 	public void setVersion(int version) {
-		Version = version;
+		this.version = version;
 	}
 
 }
